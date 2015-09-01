@@ -1,11 +1,49 @@
-# Build and Release Folders
-bin/
-bin-debug/
-bin-release/
+package scripts;
+import static org.junit.Assert.*;
 
-# Other files and folders
-.settings/
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+
+public class DemoTest {
+	
+	WebDriver driver;
+	
+	Demo1 rtl=new Demo1();
+	
+	
+	@Before
+	public void setUp()
+	{
+		rtl.get();
+	}
+	
+	@After
+	public void tearDown()
+	{
+	
+	}
+		
+	
+	@Test
+	public void testP1() {
+		rtl.signin("demo","demo");
+		
+	}
+	
+
+	@Test
+	public void testP2() {
+		rtl.signin("rtCamp","rtCamp");
+		
+	}
+		
+						
+	}
