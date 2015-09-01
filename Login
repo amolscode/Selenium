@@ -1,1 +1,88 @@
-# Selenium
+package scripts;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.LoadableComponent;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static org.junit.Assert.*;
+
+
+public class Demo1 extends LoadableComponent<Demo1> {
+
+
+	
+	@FindBy (id= "bp-login-widget-user-login")
+	@CacheLookup
+	public WebElement username1;
+
+	
+	@FindBy (id= "bp-login-widget-user-pass")
+	@CacheLookup
+	public WebElement passwd1;
+	
+	@FindBy (id= "bp-login-widget-submit")
+	@CacheLookup
+	public WebElement login;
+	
+	
+
+	
+	public WebDriver driver;
+	private String url = "http://demo.rtcamp.com/rtmedia/";
+	private String title = "Activity - rtMedia Demo Site";
+
+
+
+	
+	
+	
+	public Demo1()
+	{
+
+		driver = new FirefoxDriver();
+		PageFactory.initElements(driver, this);
+	}
+	
+	@Override
+	public void load()
+	{
+		
+		driver.get(url);
+	}
+	
+	@Override
+	public void isLoaded()
+	{
+		assertTrue(driver.getTitle().equals(title));
+	}
+	
+	public void close()
+	{
+		driver.quit();
+	}
+	
+	
+	
+
+	public void signin(String iD, String password) {
+		// TODO Auto-generated method stub
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		WebElement username1 = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@id='bp-login-widget-user-login']")));
+		username1.sendKeys(iD);
+		
+		WebElement passwd1 = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@id='bp-login-widget-user-pass']")));
+		passwd1.sendKeys(password);
+		login.click();
+		
+	
+	}
+	
+	
+}
